@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenkong.mapping.DataProcessMapping">
+    <resultMap id="queryDataProcessMap" type="com.wenkong.pojo.DataProcess">
+        <id column="ltid" property="ltid"></id>
+        <result column="ltbh" property="ltbh"></result>
+        <result column="jlsj" property="jlsj"></result>
+        <result column="kdh1" property="kdh1"></result>
+        <result column="dzll1" property="dzll1"></result>
+        <result column="dxc1" property="dxc1"></result>
+        <result column="dzll2" property="dzll2"></result>
+        <result column="dxc2" property="dxc2"></result>
+        <result column="kdh2" property="kdh2"></result>
+        <result column="dzll3" property="dzll3"></result>
+        <result column="dxc3" property="dxc3"></result>
+        <result column="dzll4" property="dzll4"></result>
+        <result column="dxc4" property="dxc4"></result>
+        <result column="zlfs" property="zlfs"></result>
+        <result column="xmbh" property="xmbh"></result>
+        <result column="sbbh" property="sbbh"></result>
+        <result column="sbcsguid" property="sbcsguid"></result>
+        <result column="czbl" property="czbl"></result>
+    </resultMap>
+    <select id="query" resultMap="queryDataProcessMap">
+        select * from data_process where ltbh=#{ltbh}
+    </select>
+    <!-- 新增插入-->
+    <insert id="">
+
+    </insert>
+</mapper>

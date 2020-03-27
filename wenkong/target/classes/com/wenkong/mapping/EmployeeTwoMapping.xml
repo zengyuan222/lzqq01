@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wenkong.mapping.EmployeeTwoMapping">
+
+    <resultMap id="findEmployeeTwo" type="com.wenkong.pojo.EmployeeTwo">
+        <result column="name" property="name"></result>
+        <result column="department" property="department"></result>
+        <result column="stuaddress" property="stuaddress"></result>
+        <result column="state" property="state"></result>
+        <result column="fstate" property="fstate"></result>
+        <result column="contact" property="contact"></result>
+        <result column="possible" property="possible"></result>
+        <result column="remark" property="remark"></result>
+        <result column="creationtime" property="creationtime"></result>
+    </resultMap>
+    <!--1.查询全部用户列表-->
+    <select id="findAll" resultMap="findEmployeeTwo">
+        select e.name,e.department,e.stuaddress,e.state,e.fstate,e.contact,e.possible,e.remark,e.creationtime,returntime,Phone,returnvehicle,takeno from employeetwo e
+    </select>
+
+    <!--2.保存用户-->
+    <insert id="add" parameterType="com.wenkong.pojo.EmployeeTwo">
+        insert into employeetwo ( name, department, stuaddress, state, fstate, contact, possible, remark,creationtime,returntime,Phone,returnvehicle,takeno)
+            values (#{name},#{department},#{stuaddress},#{state},#{fstate},#{contact},#{possible},#{remark},#{creationtime},#{returntime},#{Phone},#{returnvehicle},#{takeno})
+    </insert>
+
+    <select id="findDate" parameterType="string" resultType="com.wenkong.pojo.EmployeeTwo">
+        select * from employee where name = #{name}
+    </select>
+
+    <select id="findByDate" parameterType="string" resultType="com.wenkong.pojo.EmployeeTwo">
+        select e.name,e.department,e.stuaddress,e.state,e.fstate,e.contact,e.possible,e.remark,e.creationtime,e.returntime,e.Phone,e.returnvehicle,e.takeno from employeetwo e
+            where e.creationtime = to_date(#{creationtime},'yyyy-mm-dd')
+    </select>
+    <select id="findByName" parameterType="string" resultType="com.wenkong.pojo.EmployeeTwo">
+        select e.name,e.department,e.stuaddress,e.state,e.fstate,e.contact,e.possible,e.remark,e.creationtime,e.returntime,e.Phone,e.returnvehicle,e.takeno from employeetwo e
+         where e.name = #{name}
+    </select>
+<!--    &lt;!&ndash;时间段查询 &ndash;&gt;-->
+<!--    <select id="getEmpts" parameterType="string" resultType="com.wenkong.pojo.EmployeeTwo">-->
+<!--        select e.name,e.department,e.stuaddress,e.state,e.fstate,e.contact,e.possible,e.remark,e.creationtime,e.returntime,e.Phone,e.returnvehicle,e.takeno from employeetwo e where e.creationtime between to_date(#{creationtime1},'yyyy-mm-dd') and to_date(#{creationtime2},'yyyy-mm-dd') order by e.creationtime-->
+<!--    </select>-->
+
+
+
+
+<!--    &lt;!&ndash;时间段查询================================================= &ndash;&gt;-->
+<!--    <select id="getEmpts" parameterType="string" resultType="com.wenkong.pojo.EmployeeTwo">-->
+<!--        select e.name,e.department,e.stuaddress,e.state,e.fstate,e.contact,e.possible,e.remark,e.creationtime,returntime,Phone,returnvehicle,takeno from employeetwo e-->
+<!--        where e.creationtime = to_date(#{time1},'yyyy-mm-dd')-->
+<!--    </select>-->
+
+
+    <!--时间段查询 -->
+    <select id="getEmpts" parameterType="com.wenkong.pojo.TimeQuq" resultType="com.wenkong.pojo.EmployeeTwo">
+        select e.name,e.department,e.stuaddress,e.state,e.fstate,e.contact,e.possible,e.remark,e.creationtime,returntime,Phone,returnvehicle,takeno from employeetwo e
+        where e.creationtime between to_date(#{time1},'yyyy-mm-dd') and to_date(#{time2},'yyyy-mm-dd') order by e.creationtime
+    </select>
+
+
+
+
+
+
+
+
+<!--    <select id="findByDate" parameterType="date" resultType="com.wenkong.pojo.EmployeeTwo">-->
+<!--        select * from test-->
+    <!--                      select * from employeetwo where creationtime = to_date('#{creationtime}','yyyy-mm-dd')-->
+   <!--        <if test="startTime != null and endTime != null">-->
+<!--            where create_time &gt;= #{startTime} and create_time &lt;= #{endTime}-->
+<!--        </if>-->
+<!--    </select>-->
+
+
+<!--    <select id="findByDate" parameterType="string" resultType="com.wenkong.pojo.EmployeeTwo">-->
+<!--        select e.name,e.department,e.stuaddress,e.state,e.fstate,e.contact,e.possible,e.remark,e.creationtime from employeetwo e-->
+<!--            where e.creationtime = to_date(#{creationtime},'yyyy-mm-dd')-->
+<!--    </select>-->
+
+
+<!--    &lt;!&ndash;2.保存用户&ndash;&gt;-->
+<!--    <insert id="add" parameterType="com.wenkong.pojo.EmployeeTwo">-->
+<!--        insert into employeetwo ( name, department, stuaddress, state, fstate, contact, possible, remark,creationtime)-->
+<!--            values (#{name},#{department},#{stuaddress},#{state},#{fstate},#{contact},#{possible},#{remark},#{creationtime})-->
+<!--    </insert>-->
+</mapper>
